@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Feedback</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="card wide">
+    <h1>Edit Feedback</h1>
+    <form th:action="@{'/feedback/' + ${feedback.id} + '/edit'}" method="post">
+        <label>Subject</label>
+        <input type="text" name="subject" th:value="${feedback.subject}" required maxlength="150">
+
+        <label>Feedback</label>
+        <textarea name="message" rows="7" required th:text="${feedback.message}"></textarea>
+
+        <label>Rating</label>
+        <select name="rating" required>
+            <option value="1" th:selected="${feedback.rating == 1}">1 - Very Poor</option>
+            <option value="2" th:selected="${feedback.rating == 2}">2 - Poor</option>
+            <option value="3" th:selected="${feedback.rating == 3}">3 - Average</option>
+            <option value="4" th:selected="${feedback.rating == 4}">4 - Good</option>
+            <option value="5" th:selected="${feedback.rating == 5}">5 - Excellent</option>
+        </select>
+
+        <button type="submit">Update Feedback</button>
+        <a class="cancel" href="/feedback">Cancel</a>
+    </form>
+</div>
+</body>
+</html>
